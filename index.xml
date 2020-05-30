@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pwnshell</title>
+    <link>/</link>
+    <description>Recent content on pwnshell</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Fri, 29 May 2020 16:54:49 +0530</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Resolute Hack the Box (10.10.10.169)</title>
+      <link>/htb/resolute/</link>
+      <pubDate>Fri, 29 May 2020 16:54:49 +0530</pubDate>
+      
+      <guid>/htb/resolute/</guid>
+      <description>SUMMARY: This is a medium windows box and has 30 points.The key to this machine is to keep your eye open while enumerating SMB to get access to the user melanie and then looking at the hidden directories and files to get the credentials of the user ryan and finally abusing DNSAdmin group privileges to get NT Authority .
+ENUMERATION: As Always we will start with nmap to scan for TCP ports and Services</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Fri, 29 May 2020 13:20:52 +0530</pubDate>
+      
+      <guid>/about/</guid>
+      <description>root@pwnshell.com:~# whoami Hello , inquisitive peeps ! I am Vasu Sethia who loves to hack . Here you will find posts related to my experiments in cyber security specially in the domain of reverse engineering,malware analysis and pentesting. I can code in python and C++.My keen area of interest is reverse engineering and penetration testing .My tool MalViz.ai has been selected for BlackHat USA 2019, Blackhat Europe 2019 and BlackHat Asia 2020.</description>
+    </item>
+    
+  </channel>
+</rss>

